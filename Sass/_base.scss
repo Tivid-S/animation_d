@@ -1,0 +1,758 @@
+// ============================================================
+// PORTAFOLIO — STYLES.SCSS
+// ============================================================
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+
+// ============================================================
+// VARIABLES DE COLOR
+// ============================================================
+
+$fondo-base: #0e0a0a;
+$fondo-alterno: #150d0d;
+$fondo-tarjeta: #1a1010;
+
+$borde: #2e1a1a;
+
+$rojo: #e63030;
+$rojo-oscuro: #b01f1f;
+$rojo-claro: #ff6b6b;
+$rojo-resplandor: rgba(230, 48, 48, 0.12);
+
+$blanco: #f5f0f0;
+$texto: #d4c8c8;
+$texto-suave: #7a6060;
+
+
+// ============================================================
+// RESET & BASE
+// ============================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: $fondo-base;
+  color: $texto;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+// ============================================================
+// HEADER
+// ============================================================
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: #2c3e50;
+  color: $blanco;
+  font-family: Arial, sans-serif;
+
+  // Llamamos a la animación que estará en tu otro archivo
+  animation: slide-in-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+  div {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  nav {
+    a {
+      color: $blanco;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+      display: inline-block;
+
+      // Transición suave para el cambio de color
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #1abc9c;
+
+        // Llamamos a la animación de latido de tu otro archivo
+        animation: pulsate-fwd 0.5s ease-in-out infinite both;
+      }
+    }
+  }
+}
+
+
+// ============================================================
+// HERO
+// ============================================================
+
+.hero {
+  position: relative;
+  padding: 7rem 1.75rem 5.5rem;
+  border-bottom: 1px solid $borde;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 3.5rem;
+  max-width: 1100px;
+  margin-inline: auto;
+
+  // Cuadrícula de fondo
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient($borde 1px, transparent 1px),
+      linear-gradient(90deg, $borde 1px, transparent 1px);
+    background-size: 64px 64px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  // Resplandor rojo
+  &::after {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(230, 48, 48, 0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  &__contenido {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(230, 48, 48, 0.1);
+    border: 1px solid rgba(230, 48, 48, 0.28);
+    border-radius: 99px;
+    padding: 0.35rem 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $rojo-claro;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.6rem;
+
+    &::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: $rojo;
+      flex-shrink: 0;
+    }
+  }
+
+  &__titulo {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.05em;
+    color: $blanco;
+    margin-bottom: 1.3rem;
+    animation: scale-in-center 0.5s ease-out both;
+  }
+
+  &__descripcion {
+    color: $texto-suave;
+    max-width: 490px;
+    font-size: 1.05rem;
+    margin-bottom: 2.2rem;
+  }
+
+  &__botones {
+    display: flex;
+    gap: 1rem;
+  }
+
+
+
+  &__imagen {
+    position: relative;
+    z-index: 1;
+    width: 280px;
+    height: 280px;
+    border-radius: 28px;
+    background-color: $fondo-tarjeta;
+    border: 1px solid $borde;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: pulse 1s ease-in-out infinite;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, $rojo-resplandor, transparent);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+
+    .hero__contenido {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__imagen {
+      margin: 0 auto;
+    }
+  }
+}
+
+
+// ============================================================
+// BOTONES GLOBALES
+// ============================================================
+
+.boton_primario {
+  display: inline-block;
+  background-color: $rojo;
+  color: $blanco;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+
+  &:hover {
+    background-color: $rojo-oscuro;
+    animation: vibrate-1 0.3s linear infinite;
+
+  }
+}
+
+.boton_secundario {
+  display: inline-block;
+  background-color: transparent;
+  color: $texto;
+  font-weight: 500;
+  font-size: 0.9rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: 10px;
+  border: 1px solid $borde;
+  cursor: pointer;
+
+  &:hover {
+    border-color: $rojo;
+    color: $rojo-claro;
+    animation: vibrate-1 0.3s linear infinite;
+  }
+}
+
+
+// ============================================================
+// SOBRE MÍ
+// ============================================================
+
+.sobre_mi {
+  padding: 7rem 1.75rem;
+  border-bottom: 1px solid $borde;
+  background-color: $fondo-alterno;
+  max-width: 1100px;
+  margin-inline: auto;
+
+  &__encabezado {
+    text-align: center;
+    margin-bottom: 3.5rem;
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: $blanco;
+      letter-spacing: -0.04em;
+
+      &:hover {
+        animation: text-pop 1s ease-in-out;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        background-color: $rojo;
+        border-radius: 99px;
+        margin: 0.7rem auto 0;
+      }
+    }
+
+    p {
+      color: $texto-suave;
+      margin-top: 0.6rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  &__foto {
+    aspect-ratio: 3 / 4;
+    background-color: $fondo-tarjeta;
+    border: 1px solid $borde;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      animation: movimiento 1.5s ease-in-out;
+    }
+
+    // Línea roja izquierda
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, $rojo, transparent);
+      z-index: 1;
+    }
+
+    // Gradiente inferior
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(14, 10, 10, 0.85), transparent);
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__texto {
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-weight: 700;
+      color: $blanco;
+      letter-spacing: -0.03em;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+    }
+
+    &:hover {
+      animation: text-shadow 0.8s ease-in-out;
+    }
+
+    p {
+      color: $texto-suave;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+
+// ============================================================
+// HABILIDADES
+// ============================================================
+
+.habilidades {
+  padding: 7rem 1.75rem;
+  border-bottom: 1px solid $borde;
+  background-color: $fondo-base;
+  max-width: 1100px;
+  margin-inline: auto;
+
+
+  &__encabezado {
+    text-align: center;
+    margin-bottom: 3.5rem;
+
+    &:hover {
+      animation: expa 0.8s ease-in-out;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: $blanco;
+      letter-spacing: -0.04em;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        background-color: $rojo;
+        border-radius: 99px;
+        margin: 0.7rem auto 0;
+      }
+    }
+
+    p {
+      color: $texto-suave;
+      margin-top: 0.6rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.1rem;
+  }
+}
+
+.cuadro_habilidad {
+  background-color: $fondo-tarjeta;
+  border: 1px solid $borde;
+  border-radius: 10px;
+  padding: 1.8rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+
+  // Línea superior roja al hover
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $rojo, $rojo-claro);
+    opacity: 0;
+  }
+
+  &:hover {
+    border-color: rgba(230, 48, 48, 0.25);
+    background-color: #1f1212;
+    animation: jello-horizontal 1s ease-in-out;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: $texto;
+    letter-spacing: -0.01em;
+  }
+}
+
+
+// ============================================================
+// PROYECTOS
+// ============================================================
+
+.proyectos {
+  padding: 7rem 1.75rem;
+  border-bottom: 1px solid $borde;
+  background-color: $fondo-alterno;
+  max-width: 1100px;
+  margin-inline: auto;
+
+  &__encabezado {
+    text-align: center;
+    margin-bottom: 3.5rem;
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: $blanco;
+      letter-spacing: -0.04em;
+
+      &:hover {
+        animation: rotate-center 0.8s ease-in-out;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        background-color: $rojo;
+        border-radius: 99px;
+        margin: 0.7rem auto 0;
+      }
+    }
+
+    p {
+      color: $texto-suave;
+      margin-top: 0.6rem;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.tarjeta_proyecto {
+  background-color: $fondo-tarjeta;
+  border: 1px solid $borde;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    border-color: rgba(230, 48, 48, 0.28);
+  }
+
+  &__imagen {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: linear-gradient(135deg, #1a1010, #201414);
+    display: block;
+  }
+
+  &__cuerpo {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+
+    h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $blanco;
+      letter-spacing: -0.02em;
+    }
+
+    p {
+      color: $texto-suave;
+      font-size: 0.9rem;
+      flex: 1;
+    }
+
+    a {
+      display: inline-flex;
+      border: 1px solid transparent;
+      padding: 10px 10px 15px 10px;
+      border-radius: 10px;
+
+      &:hover {
+        border-color: rgba(230, 48, 48, 0.28);
+      }
+
+      .scramble-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: $rojo-claro;
+        font-size: 0.875rem;
+        font-weight: 600;
+        margin-top: 0.4rem;
+
+        &:hover {
+          color: $rojo;
+        }
+      }
+
+    }
+  }
+}
+
+
+// ============================================================
+// CONTACTO
+// ============================================================
+
+.contacto {
+  padding: 7rem 1.75rem;
+  border-bottom: 1px solid $borde;
+  background-color: $fondo-base;
+  position: relative;
+  overflow: hidden;
+
+  // Resplandor inferior
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(230, 48, 48, 0.07), transparent 70%);
+    pointer-events: none;
+  }
+
+  &__encabezado {
+    text-align: center;
+    margin-bottom: 3.5rem;
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: $blanco;
+      letter-spacing: -0.04em;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 48px;
+        height: 3px;
+        background-color: $rojo;
+        border-radius: 99px;
+        margin: 0.7rem auto 0;
+      }
+    }
+
+    p {
+      color: $texto-suave;
+      margin-top: 0.6rem;
+    }
+  }
+
+  &__formulario {
+    max-width: 540px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    z-index: 1;
+
+    input,
+    textarea {
+      width: 100%;
+      background-color: $fondo-tarjeta;
+      border: 1px solid $borde;
+      border-radius: 10px;
+      padding: 0.9rem 1.1rem;
+      color: $texto;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+
+      &::placeholder {
+        color: $texto-suave;
+      }
+
+      &:focus {
+        border-color: rgba(230, 48, 48, 0.45);
+        box-shadow: 0 0 0 3px rgba(230, 48, 48, 0.07);
+      }
+
+      &:hover{
+        animation: heartbeat 1s;
+      }
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: $rojo;
+      color: $blanco;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.95rem;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+
+      &:hover {
+        background-color: $rojo-oscuro;
+      }
+    }
+  }
+}
+
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+.pie_pagina {
+  padding: 2.2rem 1.75rem;
+  text-align: center;
+  border-top: 1px solid $borde;
+  background-color: $fondo-base;
+
+  p {
+    color: $texto-suave;
+    font-size: 0.85rem;
+  }
+}

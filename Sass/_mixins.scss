@@ -1,0 +1,23 @@
+@mixin responsive {
+  @media (max-width: $sise) {
+    @content;
+  }
+}
+
+@mixin ResCell {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin ResTablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin ResComputer {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
